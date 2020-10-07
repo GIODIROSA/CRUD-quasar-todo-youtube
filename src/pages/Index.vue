@@ -18,13 +18,24 @@
       ]"
     />
 
-    <q-card class="row"
-    flat bordered v-for="(task, index) in tasks" :key="index">
-      <q-card-section class="col" v-html="task.texto" :class="task.estado ? 'tachar' : '.'" />
-      <q-btn @click="task.estado = !task.estado"
-      flat color="blue">Accion</q-btn>
-      <q-btn flat color="red">Eliminar</q-btn>
-
+    <q-card
+      class="row"
+      flat
+      bordered
+      v-for="(task, index) in tasks"
+      :key="index"
+    >
+      <q-card-section
+        class="col"
+        v-html="task.texto"
+        :class="task.estado ? 'tachar' : '.'"
+      />
+      <q-btn @click="task.estado = !task.estado" flat color="blue"
+        >Accion</q-btn
+      >
+      <!-- cada
+      vez que vaya a eliminar algo usar el index que esta iterando -->
+      <q-btn flat color="red" @click="eliminar(index)">Eliminar</q-btn>
     </q-card>
     <pre>
       {{ $data }}
@@ -56,15 +67,26 @@ export default {
         textColor: "white",
         icon: "cloud_done"
       });
+    },
+    eliminar(index) {
+      //dialog
+         this.$q.dialog({
+           title: 'Acción Peligrosa',
+        message: '¿Realmente, quieres eliminar la task?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        //recuerda splice elimina y agrega. si es 0 el segundo parametro, no va eliminar.
+        this.tasks.splice(index, 1);
+        // console.log('>>>> OK')
+      })
     }
-  },//final de metodo
-  
+  } //final de metodo
 };
 </script>
 
 <style lang="scss" scoped>
-.tachar{
+.tachar {
   text-decoration: line-through;
 }
-
 </style>
