@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <router-link :to="{ name: 'Hola' }">Hola</router-link>
-    <router-view />
+    <q-pag>
+    <h5 class="titleTodo">Todo</h5>
     <!-- Q-EDITOR 1 -->
     <q-editor
       v-if="!modoEdition"
@@ -52,7 +52,7 @@
         :class="task.estado ? 'tachar' : '.'"
       />
       <!-- btn de editar -->
-      <q-btn flat color="yellow" @click="editar(index, task.id)">Editar</q-btn>
+      <q-btn flat color="blue" @click="editar(index, task.id)">Editar</q-btn>
       <!-- =============================== -->
       <!-- btn de tachar -->
       <!-- <q-btn @click="task.estado = !task.estado" flat color="blue"
@@ -65,9 +65,7 @@
     <div class="flex flex-center" v-if="tasks.length == 0">
       <h6>Sin notas</h6>
     </div>
-    <pre>
-      {{ $data }}
-    </pre>
+    </q-pag>
   </div>
 </template>
 
@@ -204,5 +202,8 @@ export default {
 <style lang="scss" scoped>
 .tachar {
   text-decoration: line-through;
+}
+.titleTodo{
+  margin: 10px;
 }
 </style>
