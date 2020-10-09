@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <q-pag>
-    <h5 class="titleTodo">Todo</h5>
+    <q-page>
+    <h5 class="titleTodo">Todo<i class="fas fa-biking"></i></h5>
     <!-- Q-EDITOR 1 -->
     <q-editor
       v-if="!modoEdition"
@@ -65,13 +65,14 @@
     <div class="flex flex-center" v-if="tasks.length == 0">
       <h6>Sin notas</h6>
     </div>
-    </q-pag>
+    </q-page>
   </div>
 </template>
 
 <script>
 import { db } from "boot/firebase";
 export default {
+  name: "Todo",
   data() {
     return {
       editor: "",
